@@ -269,7 +269,7 @@ export default {
     //滚动事件
     window.onscroll = () => {
       this.scroll = window.scrollY;
-      console.log(window.scrollY);
+      // console.log(window.scrollY);
       if (this.scroll >= this.scrollTo) {
         this.bool = true;
       } else {

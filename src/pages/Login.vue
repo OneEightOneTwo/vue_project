@@ -1,7 +1,7 @@
 <template>
     <div class="login">
         <header>
-            <router-link to="/my">
+            <router-link to="/mine">
                 <van-icon class="back" name="arrow-left" />
             </router-link>
             <span>会员登录</span>
@@ -60,7 +60,7 @@
                     if(user==123&&psw==123){
                         localStorage.setItem('user',JSON.stringify(user));
                         console.log(this);
-                        this.$router.push("/My");
+                        this.$router.push("/mine");
                     }else{
                         this.alert("信息不正确");
                     }
