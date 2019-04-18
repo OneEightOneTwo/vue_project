@@ -21,6 +21,12 @@ import My from '../pages/My.vue';
 import Login from '../pages/Login.vue';
 //引入注册组件
 import Reg from '../pages/Reg.vue';
+import Goods from '../pages/Goods.vue';
+import List from '../pages/List.vue';
+
+
+//引入嵌套组件
+
 
 //实例化路由
 var router=new VueRouter({
@@ -39,6 +45,16 @@ var router=new VueRouter({
         name:'eat',
         path:'/eat',
         component:Eat
+    }
+    ,{
+        name:'goods',
+        path:'/goods',
+        component:Goods
+    }
+    ,{
+        name:'list',
+        path:'/list',
+        component:List
     },{
         name:'cart',
         path:'/cart',

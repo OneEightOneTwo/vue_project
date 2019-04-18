@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router/router.js';
 import 'weui';
 Vue.config.productionTip = false;
+
 // //引入ui框架
 // import iView from 'iview';
 // //使用ui框架
@@ -11,6 +12,7 @@ import Vant from 'vant';
 import 'vant/lib/index.css';
 
 Vue.use(Vant);
+
 
 
 new Vue({

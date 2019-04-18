@@ -51,27 +51,22 @@ import src from '../../assets/icon_tabbar.png';
                     {
                         name:'首页',
                         src:require('../../assets/home.png'),
-                        isShouNum: false,
                         path: '/home'
                     },{
                         name:'分类',
                         src:require('../../assets/apps.png'),
-                        isShouNum: false,
                         path:'/classify'
                     },{
                         name:'吃饭吧',
                         src:require('../../assets/eat.png'),
-                        isShouNum: false,
                         path:'/eat'
                     },{
                         name:'购物车',
                         src:require('../../assets/cart.png'),
-                        isShouNum: true,
                         path:'/cart'
                     },{
                         name:'我的易果',
                         src:require('../../assets/my.png'),
-                        isShouNum: false,
                         path:'/my'
                     }
                 ],
@@ -95,7 +90,5 @@ import src from '../../assets/icon_tabbar.png';
         left:0;
         z-index: 1;
     }
-    .icon{
 
-    }
 </style>
