@@ -32,6 +32,7 @@
                 </a> -->
                 <a @click="changeActiveId(index,i.path)" v-for="(i,index) in footdata" :key="index" href="javascript:;" class="weui-tabbar__item" :class="{'weui-bar__item_on':activeId==index}">
                     <span style="display: inline-block;position: relative;">
+                        <van-icon class="icon" name="close" />
                         <img :src="i.src" alt="" class="weui-tabbar__icon">
                         <span v-show="i.isShouNum" class="weui-badge" style="position: absolute;top: -2px;right: -13px;">8</span>
                     </span>
@@ -49,26 +50,29 @@ import src from '../../assets/icon_tabbar.png';
                 footdata:[
                     {
                         name:'首页',
-                        src:src,
+                        src:require('../../assets/home.png'),
                         isShouNum: false,
                         path: '/home'
                     },{
                         name:'分类',
-                        src:src,
+                        src:require('../../assets/apps.png'),
                         isShouNum: false,
                         path:'/classify'
                     },{
                         name:'吃饭吧',
-                        src:src,
-                        isShouNum: false
+                        src:require('../../assets/eat.png'),
+                        isShouNum: false,
+                        path:'/eat'
                     },{
                         name:'购物车',
-                        src:src,
-                        isShouNum: true
+                        src:require('../../assets/cart.png'),
+                        isShouNum: true,
+                        path:'/cart'
                     },{
                         name:'我的易果',
-                        src:src,
-                        isShouNum: false
+                        src:require('../../assets/my.png'),
+                        isShouNum: false,
+                        path:'/my'
                     }
                 ],
                 activeId: 0,
@@ -83,11 +87,15 @@ import src from '../../assets/icon_tabbar.png';
 
      }
 </script>
-<style type="text/css">
+<style ang="css" scoped>
     #footer{
         width: 100%;
         position:fixed;
         bottom:0;
         left:0;
+        z-index: 1;
+    }
+    .icon{
+
     }
 </style>

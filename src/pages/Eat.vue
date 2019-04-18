@@ -1,17 +1,18 @@
 <template>
     <div>
-        分类页面
+        吃饭吧
     </div>
 </template>
 <script type="text/javascript">
      export default{
-        data(){
+         data(){
             return{
 
             }
-        },
+         },
      }
 </script>
+
 <style scoped>
     
 </style>
