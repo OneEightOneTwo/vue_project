@@ -268,10 +268,16 @@ export default {
     //滚动事件
     window.onscroll = () => {
       this.scroll = window.scrollY;
+      console.log(window.scrollY);
       if (this.scroll >= this.scrollTo) {
         this.bool = true;
       } else {
         this.bool = false;
+      }
+      if (this.scroll > 600) {
+        setTimeout(()=>{
+          
+        })
       }
     };
   }
@@ -435,13 +441,13 @@ body {
   width: 100%;
   height: 232px;
 }
-.loader{
+.loader {
   width: 100%;
   height: 20px;
   text-align: center;
   margin-bottom: 5px;
 }
-.loader p{
+.loader p {
   font-size: 15px;
   color: #b3b3b3;
 }
