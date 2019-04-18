@@ -66,7 +66,7 @@ export default {
   left: 0;
   z-index: 99;
   height: 53px;
-  background: #f5f5f5;
+  background: #fff;
 }
 .Hot {
   padding: 5px 10px;
