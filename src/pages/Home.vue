@@ -26,7 +26,7 @@
     </div>
     <!-- 类型菜单 -->
     <div class="first-screen-menu">
-      <li v-for="(t,index) in list" :key="index">
+      <li v-for="(t,index) in list" :key="index" @click="goToDetails">
         <a href="javascript:;">
           <img :src="t.img" alt>
         </a>
@@ -107,8 +107,11 @@
         <img src="../assets/9288737492051556_658x819.jpg" alt>
       </div>
     </div>
-    <!-- 懒加载 -->
-    <div class="prolist clearfix">
+    <!-- 懒加载/类型 -->
+    <div class="loader">
+      <p>加载更多数据中...</p>
+    </div>
+    <div class="prolist" style="display:none">
       <div class="tt">
         <h3>水产海鲜</h3>
       </div>
@@ -145,7 +148,7 @@
         </li>
       </ul>
     </div>
-    <div class="prolist clearfix">
+    <div class="prolist clearfix" style="display:none">
       <div class="tt">
         <h3>禽类蛋品</h3>
       </div>
@@ -187,7 +190,7 @@
       <img src="../assets/top.png" alt>
     </div>
     <!-- 底部 -->
-    <div class="pagefooter">
+    <div class="pagefooter" style="display:none">
       <p>沪IPC备09008015号</p>
       <p>上海易果电子商务有限公司</p>
     </div>
@@ -195,7 +198,6 @@
 </template>
 <script type="text/javascript">
 // 头部搜索
-
 import Header from "../components/public/Header.vue";
 export default {
   data() {
@@ -246,19 +248,24 @@ export default {
     Header
   },
   methods: {
-    // 回到顶部
+    // 点击缓慢回到顶部
     goTop() {
       let timer = setInterval(() => {
         if (this.scroll > 0) {
           this.scroll -= 100;
-          window.scrollTo(0,this.scroll)
+          window.scrollTo(0, this.scroll);
         } else {
           clearInterval(timer);
         }
       }, 30);
+    },
+    // 跳到详情页
+    goToDetails() {
+      this.$router.push({ name: "goodsList" });
     }
   },
   mounted() {
+    //滚动事件
     window.onscroll = () => {
       this.scroll = window.scrollY;
       if (this.scroll >= this.scrollTo) {
@@ -426,6 +433,17 @@ body {
 }
 .link-img1 img {
   width: 100%;
+  height: 232px;
+}
+.loader{
+  width: 100%;
+  height: 20px;
+  text-align: center;
+  margin-bottom: 5px;
+}
+.loader p{
+  font-size: 15px;
+  color: #b3b3b3;
 }
 .prolist {
   margin: 10px 0;

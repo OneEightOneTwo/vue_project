@@ -14,6 +14,7 @@ import Classify from '../pages/Classify.vue';
 import Mine from '../pages/Mine.vue';
 //引入搜索组件
 import Search from '../pages/Search.vue';
+import GoodsList from '../pages/GoodsList.vue';
 //引入嵌套组件
 
 //实例化路由
@@ -37,6 +38,10 @@ var router = new VueRouter({
         name:'search',
         path:'/search',
         component:Search
+    },{
+        name:'goodsList',
+        path:'/goodsList',
+        component:GoodsList
     }]
 });
 
