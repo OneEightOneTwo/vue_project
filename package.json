@@ -10,9 +10,6 @@
   "dependencies": {
     "core-js": "^2.6.5",
     "iview": "^3.4.0",
-    "jquery": "^3.4.0",
-    "node-sass": "^4.11.0",
-    "sass-loader": "^7.1.0",
     "vant": "^1.6.14",
     "vue": "^2.6.10",
     "vue-router": "^3.0.4",

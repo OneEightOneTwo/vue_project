@@ -1,15 +1,13 @@
 <template>
     <div>
-        <!-- <header>
-            
-        </header> -->
+        <div class="head"></div>
         <div class="nav">
             <ul class="navList">
                 <li v-for="(i,index) in classifys" v-text="i.name" @click="changeShow(index)" :class="{'active':index===show}" :key="index"></li>
                 <!-- <li>国产水果</li> -->
             </ul>
         </div>
-        <ul class="listContent">
+        <ul class="listContent" @click="goto">
             <!-- <div v-for="(i,index) in classifys" v-show="i.show" v-text="i.content" :key="index"> -->
             <li v-for="(i,index) in classifys" :key="index" v-show="index===show">
                 <div class="con"  v-for="(item,index) in i.contents" :key="index">
@@ -206,25 +204,6 @@
                         url:require('../../assets/image/g4.jpg'),
                     }],
                     
-                },{
-                    name:'即烹美食',
-                    contents:[{
-                        content:"全部",
-                        url:require('../../assets/image/g1.jpg'),
-                    },{
-                        content:"奶酪",
-                        url:require('../../assets/image/g2.jpg'),
-                    },{
-                        content:"酸奶/乳酸",
-                        url:require('../../assets/image/g3.jpg'),
-                    },{
-                        content:"牛奶",
-                        url:require('../../assets/image/g4.jpg'),
-                    },{
-                        content:"蛋糕",
-                        url:require('../../assets/image/g5.jpg'),
-                    }],
-                    
                 }],
                 show:0,
             }
@@ -233,16 +212,23 @@
             //改变show的值
             changeShow(index){
                this.show = index;
+            },
+            //点击分类跳往列表页
+            goto(){
+                this.$router.push('/list')
             }
         }
      }
 </script>
 <style scoped lang="css">
+    .head{
+        width:100%;
+        height:44px;
+    }
     .nav{
         width:24%;
         text-align: center;
         float: left;
-
     }
     .active{
         color:#11b57c;
@@ -250,8 +236,8 @@
     }
     .nav li{
         width: 100%;
-        height: 50px;
-        line-height: 50px;
+        height: 45px;
+        line-height: 45px;
         padding:5px 5px;
         background: #f8f8f8;
     }

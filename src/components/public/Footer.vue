@@ -66,8 +66,9 @@ import src from '../../assets/icon_tabbar.png';
                         path:'/cart'
                     },{
                         name:'我的易果',
-                        src:require('../../assets/my.png'),
-                        path:'/my'
+                        src:src,
+                        isShouNum: false,
+                        path:'/mine'
                     }
                 ],
                 activeId: 0,

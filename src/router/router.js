@@ -15,7 +15,7 @@ import Eat from '../pages/Eat.vue';
 //引入购物车组件
 import Cart from '../pages/Cart.vue';
 //引入我的易果组件
-import My from '../pages/My.vue';
+import Mine from '../pages/Mine.vue';
 //引入我的嵌套组件
 //引入登录组件
 import Login from '../pages/Login.vue';
@@ -23,20 +23,32 @@ import Login from '../pages/Login.vue';
 import Reg from '../pages/Reg.vue';
 import Goods from '../pages/Goods.vue';
 import List from '../pages/List.vue';
-
-
+//引入搜索组件
+import Search from '../pages/Search.vue';
 //引入嵌套组件
 
 
 //实例化路由
-var router=new VueRouter({
-    routes:[{
-        path:'/',//重定向
-        redirect:'/home',
+var router = new VueRouter({
+    routes: [{
+        path: '/',//重定向
+        redirect: '/home',
+    }, {
+        name: 'home',
+        path: '/home',
+        component: Home
+    }, {
+        name: 'classify',
+        path: '/classify',
+        component: Classify
+    }, {
+        name: 'mine',
+        path: '/mine',
+        component: Mine
     },{
-        name:'home',
-        path:'/home',
-        component:Home
+        name:'search',
+        path:'/search',
+        component:Search
     },{
         name:'classify',
         path:'/classify',
@@ -60,9 +72,9 @@ var router=new VueRouter({
         path:'/cart',
         component:Cart
     },{
-        name:'my',
-        path:'/my',
-        component:My,
+        name:'mine',
+        path:'/mine',
+        component:Mine,
     },{
         name:'login',
         path:'/login',
