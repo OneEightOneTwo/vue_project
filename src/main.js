@@ -4,9 +4,16 @@ import router from './router/router.js';
 import 'weui';
 Vue.config.productionTip = false;
 //引入ui框架
-import iView from 'iview';
+// import iView from 'iview';
+
+//引入Vant框架
+import Vant from 'vant';
+import 'vant/lib/index.css';
+//使用Vant框架
+Vue.use(Vant);
+import'../src/base/base.css'
 //使用ui框架
-Vue.use(iView);
+// Vue.use(iView);
 
 new Vue({
   render: h => h(App),

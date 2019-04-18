@@ -7,15 +7,21 @@
 
 <script>
 //
-import Footer from './components/public/Footer.vue';
+import Footer from "./components/public/Footer.vue";
+
 export default {
-  name: 'app',
+  name: "app",
   components: {
-       Footer, 
+    Footer
   }
-}
+};
 </script>
 
 <style>
-
+html,
+body {
+  width: 100%;
+  background: #f5f5f5f5;
+  line-height: normal;
+}
 </style>

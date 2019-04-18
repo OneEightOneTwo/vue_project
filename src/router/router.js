@@ -10,23 +10,33 @@ Vue.use(VueRouter);
 import Home from '../pages/Home.vue';
 //引入分类组件
 import Classify from '../pages/Classify.vue';
-
-
+//引入我的组件
+import Mine from '../pages/Mine.vue';
+//引入搜索组件
+import Search from '../pages/Search.vue';
 //引入嵌套组件
 
 //实例化路由
-var router=new VueRouter({
-    routes:[{
-        path:'/',//重定向
-        redirect:'/home',
+var router = new VueRouter({
+    routes: [{
+        path: '/',//重定向
+        redirect: '/home',
+    }, {
+        name: 'home',
+        path: '/home',
+        component: Home
+    }, {
+        name: 'classify',
+        path: '/classify',
+        component: Classify
+    }, {
+        name: 'mine',
+        path: '/mine',
+        component: Mine
     },{
-        name:'home',
-        path:'/home',
-        component:Home
-    },{
-        name:'classify',
-        path:'/classify',
-        component:Classify
+        name:'search',
+        path:'/search',
+        component:Search
     }]
 });
 

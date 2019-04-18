@@ -68,7 +68,8 @@ import src from '../../assets/icon_tabbar.png';
                     },{
                         name:'我的易果',
                         src:src,
-                        isShouNum: false
+                        isShouNum: false,
+                        path:'/mine'
                     }
                 ],
                 activeId: 0,
