@@ -60,7 +60,8 @@ import src from '../../assets/icon_tabbar.png';
                     },{
                         name:'吃饭吧',
                         src:src,
-                        isShouNum: false
+                        isShouNum: false,
+                        path:'/eat'
                     },{
                         name:'购物车',
                         src:src,
@@ -68,7 +69,7 @@ import src from '../../assets/icon_tabbar.png';
                     },{
                         name:'我的易果',
                         src:src,
-                        isShouNum: false
+                        isShouNum: false,
                     }
                 ],
                 activeId: 0,
@@ -89,5 +90,6 @@ import src from '../../assets/icon_tabbar.png';
         position:fixed;
         bottom:0;
         left:0;
+        z-index: 1;
     }
 </style>

@@ -1,0 +1,115 @@
+<template>
+  <div>
+    <van-tabs @click="onClick" color="#11b57c">
+      <van-tab title="销量">
+        <div class="productContent">
+          <div class="img">
+            <img src="../../assets/1-1.jpg">
+          </div>
+          <div class="inforPro">
+            <p class="title">澳洲塔斯马尼亚冷冻去骨后腿和牛排(MB7+)200g</p>
+            <p class="txt">有筋有肉有嚼劲，厚实多汁</p>
+            <p class="price">
+              <span class="priceRed">¥189</span>
+              <span class="standard">200g/盒</span>
+              <van-icon name="add-o" color="#11b57c" class="add"/>
+            </p>
+          </div>
+        </div>
+        <div class="productContent">
+          <div class="img">
+            <img src="../../assets/1-1.jpg">
+          </div>
+          <div class="inforPro">
+            <p class="title">澳洲塔斯马尼亚冷冻去骨后腿和牛排(MB7+)200g</p>
+            <p class="txt">有筋有肉有嚼劲，厚实多汁</p>
+            <p class="price">
+              <span class="priceRed">¥189</span>
+              <span class="standard">200g/盒</span>
+              <van-icon name="add-o" color="#11b57c" class="add"/>
+            </p>
+          </div>
+        </div>
+      </van-tab>
+      <van-tab title="价格">空</van-tab>
+    </van-tabs>
+    <img @click="hui" src="../../assets/image/return1.png" alt class="return">
+    <img @click="toTop" src="../../assets/image/top.png" alt class="go-top">
+    <img @click="cart" src="../../assets/image/cart.png" alt class="cart">
+  </div>
+</template>
+<script>
+export default {
+  methods: {
+    onClick(index, title) {},
+    //点击返回键返回首页
+    hui() {
+      this.$router.push("/home");
+    },
+    //点击购物车去往购物车页
+    cart() {
+      this.$router.push("/cart");
+    },
+    toTop() {}
+  }
+};
+</script>
+<style scoped>
+.productContent {
+  width: 100%;
+  height: 140px;
+  border-bottom: 1px solid #f8f8f8;
+}
+.go-top {
+  position: fixed;
+  bottom: 65px;
+  right: 5%;
+  z-index: 99;
+  display: inline-block;
+}
+.return {
+  position: fixed;
+  top: 10px;
+  left: 2%;
+  z-index: 99;
+}
+.cart {
+  position: fixed;
+  bottom: 100px;
+  right: 5%;
+  z-index: 99;
+}
+.img {
+  float: left;
+  padding: 25px 5% 0 2%;
+}
+.img img {
+  width: 100px;
+}
+.inforPro .title {
+  padding-top: 25px;
+  font-size: 12px;
+}
+.txt {
+  font-size: 10px;
+  color: #777;
+  height: 25px;
+  line-height: 25px;
+}
+.price {
+  position: relative;
+}
+.price .priceRed {
+  font-size: 14px;
+  color: red;
+}
+.price .standard {
+  padding-left: 10%;
+  font-size: 12px;
+  color: #888;
+}
+.price .add {
+  position: absolute;
+  right: 8%;
+}
+</style>

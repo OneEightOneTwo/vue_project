@@ -1,17 +1,14 @@
 <template>
-    <div>
-        分类页面
-    </div>
-</template>
-<script type="text/javascript">
-     export default{
-        data(){
-            return{
+<div>
+    <Header></Header>
 
-            }
-        },
-     }
+</div>
+</template>
+<script>
+ import Header from '../components/classify/header.vue';
+export default {
+    components:{
+        Header,
+    }
+}
 </script>
-<style scoped>
-    
-</style>

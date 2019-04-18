@@ -10,6 +10,10 @@ Vue.use(VueRouter);
 import Home from '../pages/Home.vue';
 //引入分类组件
 import Classify from '../pages/Classify.vue';
+import Eat from '../pages/Eat.vue';
+import Goods from '../pages/Goods.vue';
+import List from '../pages/List.vue';
+import Cart from '../pages/Cart.vue';
 
 
 //引入嵌套组件
@@ -27,6 +31,24 @@ var router=new VueRouter({
         name:'classify',
         path:'/classify',
         component:Classify
+    },{
+        name:'eat',
+        path:'/eat',
+        component:Eat
+    }
+    ,{
+        name:'goods',
+        path:'/goods',
+        component:Goods
+    }
+    ,{
+        name:'list',
+        path:'/list',
+        component:List
+    },{
+        name:'cart',
+        path:'/cart',
+        component:Cart
     }]
 });
 
