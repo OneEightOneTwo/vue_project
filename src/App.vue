@@ -7,24 +7,17 @@
 
 <script>
 //
-import Footer from './components/public/Footer.vue';
+import Footer from "./components/public/Footer.vue";
+
 export default {
-  name: 'app',
+  name: "app",
   components: {
-       Footer, 
+    Footer
   }
-}
+};
 </script>
 
 <style>
-
-/*盖住底部的*/
-/*html, body {
-    height: 100%;
-}
-#app {
-    height: 100%;
-}*/
 *{
     margin: 0;
     padding: 0;
@@ -33,4 +26,10 @@ img{
     border:0;
 }
 ol, ul ,li{list-style: none;} 
+html,
+body {
+  width: 100%;
+  background: #f5f5f5f5;
+  line-height: normal;
+}
 </style>
