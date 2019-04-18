@@ -42,11 +42,9 @@
     </div>
 </template>
 <script type="text/javascript">
-import src from '../../assets/icon_tabbar.png';
      export default{
         data(){
             return{
-                src:src,
                 footdata:[
                     {
                         name:'首页',
@@ -66,8 +64,7 @@ import src from '../../assets/icon_tabbar.png';
                         path:'/cart'
                     },{
                         name:'我的易果',
-                        src:src,
-                        isShouNum: false,
+                        src:require('../../assets/my.png'),
                         path:'/mine'
                     }
                 ],
@@ -80,7 +77,6 @@ import src from '../../assets/icon_tabbar.png';
                 this.$router.push(path);
             }
         }
-
      }
 </script>
 <style ang="css" scoped>
@@ -91,5 +87,4 @@ import src from '../../assets/icon_tabbar.png';
         left:0;
         z-index: 1;
     }
-
 </style>
