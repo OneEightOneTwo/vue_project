@@ -6,7 +6,7 @@ import axios from 'axios';
 
 //Vue继承axios方法（就是把axios挂在）
 Vue.prototype.$axios=axios;
-
+import state from '../observeble/observeble.js'
 export default{
     //参数设置
     //url:后端请求的链接

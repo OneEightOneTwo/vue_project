@@ -108,44 +108,7 @@
       </div>
     </div>
     <!-- 懒加载/类型 -->
-    <div class="prolist" style="display:none">
-      <div class="tt">
-        <h3>水产海鲜</h3>
-      </div>
-      <ul>
-        <li>
-          <div class="pic">
-            <a href="javascript:;">
-              <img src="../assets/9288707550749353_300.jpg" alt>
-            </a>
-          </div>
-          <div class="info">
-            <p class="name">马家沟芹菜2kg</p>
-            <span class="saletip">单品包邮</span>
-            <div class="price">
-              <strong>￥39.9</strong>
-              /2kg
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="pic">
-            <a href="javascript:;">
-              <img src="../assets/9288733757351272_300.jpg" alt>
-            </a>
-          </div>
-          <div class="info">
-            <p class="name">马家沟芹菜2kg</p>
-            <span class="saletip">单品包邮</span>
-            <div class="price">
-              <strong>￥39.9</strong>
-              /2kg
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div v-for="(item,index) in lei" :key="index" class="prolist" style="display:none">
+    <div v-show="show" v-for="(item,index) in lei" :key="index" class="prolist">
       <div class="tt">
         <h3 v-text="item.title"></h3>
       </div>
@@ -182,20 +145,29 @@
         </li>-->
       </ul>
     </div>
+    <!-- 懒加载/类型 -->
+    <div class="loader" v-if="showLoader">
+      <p>加载更多数据中...</p>
+    </div>
     <!-- 回到顶部 -->
     <div @click="goTop" class="goBalck" v-show="bool">
       <img src="../assets/top.png" alt>
     </div>
     <!-- 底部 -->
-    <div class="pagefooter" style="display:none">
+    <div class="pagefooter" v-show="show">
       <p>沪IPC备09008015号</p>
       <p>上海易果电子商务有限公司</p>
     </div>
+    <!-- 加载中 -->
+    <Loading/>
   </div>
 </template>
 <script type="text/javascript">
 // 头部搜索
 import Header from "../components/public/Header.vue";
+// 加载中
+import Loading from "../components/public/Loading.vue";
+import { setTimeout, clearTimeout } from "timers";
 export default {
   data() {
     return {
@@ -275,13 +247,21 @@ export default {
       // 默认滚动到指定值出现回到顶部
       scrollTo: 500,
       //滚动值
-      scroll: 0
-      //
+      scroll: 0,
+      //变量scrollTop是滚动条滚动时，距离顶部的距离
+      scrollTop: 0,
+      //变量windowHeight是可视区的高度
+      windowHeight: 0,
+      //变量scrollHeight是滚动条的总高度
+      scrollHeight: 0,
+      showLoader: false,
+      show: false
     };
   },
   // 头部搜索组件
   components: {
-    Header
+    Header,
+    Loading
   },
   methods: {
     // 点击缓慢回到顶部
@@ -305,20 +285,21 @@ export default {
     window.onscroll = () => {
       this.scroll = window.scrollY;
       //变量scrollTop是滚动条滚动时，距离顶部的距离
-      let scrollTop =
+      this.scrollTop =
         document.documentElement.scrollTop || document.body.scrollTop;
       //变量windowHeight是可视区的高度
-      let windowHeight =
+      this.windowHeight =
         document.documentElement.clientHeight || document.body.clientHeight;
       //变量scrollHeight是滚动条的总高度
-      let scrollHeight =
+      this.scrollHeight =
         document.documentElement.scrollHeight || document.body.scrollHeight;
       //滚动条到底部的条件
-      if (scrollTop + windowHeight == scrollHeight) {
-        //写后台加载数据的函数
-        console.log("到底了");
+      if (this.scrollTop + this.windowHeight == this.scrollHeight) {
+        this.showLoader = true;
+        this.show = true;
+        this.showLoader = false;
+      } else {
       }
-      // console.log(window.scrollY);
       if (this.scroll >= this.scrollTo) {
         this.bool = true;
       } else {
