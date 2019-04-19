@@ -108,67 +108,27 @@
       </div>
     </div>
     <!-- 懒加载/类型 -->
-    <div class="loader">
-      <p>加载更多数据中...</p>
-    </div>
-    <div class="prolist" style="display:none">
+    <div v-show="show" v-for="(item,index) in lei" :key="index" class="prolist">
       <div class="tt">
-        <h3>水产海鲜</h3>
+        <h3 v-text="item.title"></h3>
       </div>
       <ul>
-        <li>
+        <li v-for="(i,index) in item.trade" :key="index">
           <div class="pic">
             <a href="javascript:;">
-              <img src="../assets/9288707550749353_300.jpg" alt>
+              <img :src="i.img" alt>
             </a>
           </div>
           <div class="info">
-            <p class="name">马家沟芹菜2kg</p>
+            <p class="name" v-text="i.tradeName"></p>
             <span class="saletip">单品包邮</span>
             <div class="price">
-              <strong>￥39.9</strong>
-              /2kg
+              <strong v-text="i.price"></strong>
+              <span v-text="i.weight">/2kg</span>
             </div>
           </div>
         </li>
-        <li>
-          <div class="pic">
-            <a href="javascript:;">
-              <img src="../assets/9288733757351272_300.jpg" alt>
-            </a>
-          </div>
-          <div class="info">
-            <p class="name">马家沟芹菜2kg</p>
-            <span class="saletip">单品包邮</span>
-            <div class="price">
-              <strong>￥39.9</strong>
-              /2kg
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="prolist clearfix" style="display:none">
-      <div class="tt">
-        <h3>禽类蛋品</h3>
-      </div>
-      <ul>
-        <li>
-          <div class="pic">
-            <a href="javascript:;">
-              <img src="../assets/170418092538034_1236867_300.jpg" alt>
-            </a>
-          </div>
-          <div class="info">
-            <p class="name">马家沟芹菜2kg</p>
-            <span class="saletip">单品包邮</span>
-            <div class="price">
-              <strong>￥39.9</strong>
-              /2kg
-            </div>
-          </div>
-        </li>
-        <li>
+        <!-- <li>
           <div class="pic">
             <a href="javascript:;">
               <img src="../assets/170508094922561_104154_300.jpg" alt>
@@ -182,26 +142,36 @@
               /2kg
             </div>
           </div>
-        </li>
+        </li>-->
       </ul>
+    </div>
+    <!-- 懒加载/类型 -->
+    <div class="loader" v-if="showLoader">
+      <p>加载更多数据中...</p>
     </div>
     <!-- 回到顶部 -->
     <div @click="goTop" class="goBalck" v-show="bool">
       <img src="../assets/top.png" alt>
     </div>
     <!-- 底部 -->
-    <div class="pagefooter" style="display:none">
+    <div class="pagefooter" v-show="show">
       <p>沪IPC备09008015号</p>
       <p>上海易果电子商务有限公司</p>
     </div>
+    <!-- 加载中 -->
+    <Loading/>
   </div>
 </template>
 <script type="text/javascript">
 // 头部搜索
 import Header from "../components/public/Header.vue";
+// 加载中
+import Loading from "../components/public/Loading.vue";
+import { setTimeout, clearTimeout } from "timers";
 export default {
   data() {
     return {
+      // 控制回到顶部
       bool: false,
       list: [
         {
@@ -237,15 +207,60 @@ export default {
           img: require("../assets/9570212329629268_144.png")
         }
       ],
+      lei: [
+        {
+          title: "水产海鲜",
+          trade: [
+            {
+              tradeName: "青岛大虾",
+              price: "￥54",
+              weight: "/400g",
+              img: require("../assets/9288707550749353_300.jpg")
+            },
+            {
+              tradeName: "百年渔港蒜蓉粉丝扇贝",
+              price: "￥19",
+              weight: "/500g",
+              img: require("../assets/9288733757351272_300.jpg")
+            }
+          ]
+        },
+        {
+          title: "禽类蛋类",
+          trade: [
+            {
+              tradeName: "苏北散养l老母鸡",
+              price: "￥49",
+              weight: "/950g",
+              img: require("../assets/170418092538034_1236867_300.jpg")
+            },
+            {
+              tradeName: "广东黄油鸡",
+              price: "￥37.5",
+              weight: "/950g",
+              img: require("../assets/170508094922561_104154_300.jpg")
+            }
+          ]
+        }
+      ],
       // 默认滚动到指定值出现回到顶部
       scrollTo: 500,
       //滚动值
-      scroll: 0
+      scroll: 0,
+      //变量scrollTop是滚动条滚动时，距离顶部的距离
+      scrollTop: 0,
+      //变量windowHeight是可视区的高度
+      windowHeight: 0,
+      //变量scrollHeight是滚动条的总高度
+      scrollHeight: 0,
+      showLoader: false,
+      show: false
     };
   },
   // 头部搜索组件
   components: {
-    Header
+    Header,
+    Loading
   },
   methods: {
     // 点击缓慢回到顶部
@@ -261,24 +276,33 @@ export default {
     },
     // 跳到详情页
     goToDetails() {
-      this.$router.push({ name: "goodsList" });
-      
+      this.$router.push({ name: "list" });
     }
   },
   mounted() {
     //滚动事件
     window.onscroll = () => {
       this.scroll = window.scrollY;
-      // console.log(window.scrollY);
+      //变量scrollTop是滚动条滚动时，距离顶部的距离
+      this.scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      //变量windowHeight是可视区的高度
+      this.windowHeight =
+        document.documentElement.clientHeight || document.body.clientHeight;
+      //变量scrollHeight是滚动条的总高度
+      this.scrollHeight =
+        document.documentElement.scrollHeight || document.body.scrollHeight;
+      //滚动条到底部的条件
+      if (this.scrollTop + this.windowHeight == this.scrollHeight) {
+        this.showLoader = true;
+        this.show = true;
+        this.showLoader = false;
+      } else {
+      }
       if (this.scroll >= this.scrollTo) {
         this.bool = true;
       } else {
         this.bool = false;
-      }
-      if (this.scroll > 600) {
-        setTimeout(()=>{
-          
-        })
       }
     };
   }
