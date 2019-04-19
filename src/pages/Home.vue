@@ -1,6 +1,6 @@
 <template>
   <!--头部搜索 -->
-  <div style="height:100%;margin-bottom:53px;">
+  <div style="height:100%;margin-bottom:53px;background:#f5f5f5 !important">
     <Header/>
     <!-- 轮播图 -->
     <van-swipe
@@ -318,6 +318,7 @@ export default {
         //写后台加载数据的函数
         console.log("到底了");
       }
+      // console.log(window.scrollY);
       if (this.scroll >= this.scrollTo) {
         this.bool = true;
       } else {

@@ -8,7 +8,7 @@
             <span>编辑</span>
         </header>
         <div class="main" >
-            <div class="one" v-for="(i,index) in cartLists">
+            <div class="one" v-for="(i,index) in cartLists" :key="index">
                 <div class="check">
                     <input type="checkbox" />
                 </div>

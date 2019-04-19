@@ -1,7 +1,7 @@
 <template>
     <div class="reg">
        <header>
-            <router-link to="/my">
+            <router-link to="/mine">
                 <van-icon class="back" name="arrow-left" />
             </router-link>
             <span>会员注册</span>

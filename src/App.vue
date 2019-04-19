@@ -29,7 +29,7 @@ ol, ul ,li{list-style: none;}
 html,
 body {
   width: 100%;
-  background: #f5f5f5f5;
+  /* background: #f5f5f5f5; */
   line-height: normal;
 }
 </style>
