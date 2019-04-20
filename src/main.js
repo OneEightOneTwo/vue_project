@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router/router.js';
+import router from './router/router.js';5
 import 'weui';
 Vue.config.productionTip = false;
 //引入ui框架
@@ -15,7 +15,12 @@ import'../src/base/base.css'
 //使用ui框架
 // Vue.use(iView);
 
+import axios from 'axios';
+Vue.prototype.$axios=axios;
+
+
 new Vue({
   render: h => h(App),
   router: router,
+  // store
 }).$mount('#app')

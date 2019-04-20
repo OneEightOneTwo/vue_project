@@ -9,11 +9,16 @@
         </span>
         <a href="javascript:;">
           <!-- 未登陆状态 -->
-          <p class="name" style="display:block" @click.capture="routergo">
+          <p class="name" v-show="loginshow" style="display:block" @click.capture="routergo">
             <span>登录</span>/<span>注册</span>
           </p>
           <!-- 登陆状态 -->
-          <p class="name" style="display:none">您好！17677486654</p>
+          <p class="name" v-show="usershow" >
+              <span v-text="usertxt">
+                <!-- 您好！17677486654 -->
+              </span>
+              <span style="margin-left:10px;text-decoration:underline" @click="delectUser">退出</span>
+          </p>
         </a>
         <i class="setting"></i>
       </div>
@@ -147,15 +152,41 @@
 
 <script>
 export default {
+  data(){
+      return{
+        user:'',
+        usershow:false,
+        usertxt:'',
+        loginshow:true,
+      }
+  },
   methods:{
       routergo(e){
-          console.log(e.target.innerHTML);
+          // console.log(e.target.innerHTML);
           if(e.target.innerHTML=="登录"){
               this.$router.push('/login');
           }else if(e.target.innerHTML=="注册"){
               this.$router.push('/reg');
           }
+      },
+      delectUser(){
+         localStorage.removeItem('user');
+         this.usershow=false;
+         this.loginshow=true;
       }
+  },
+  //数据挂载后执行
+  beforeMount(){
+    //渲染用户名(没有加JSON方法拿到的有双引号)
+    var user=JSON.parse(localStorage.getItem('user'));
+    // console.log(user);
+    if(user==null){
+      return
+    }else if(user){
+      this.usershow=true;
+      this.loginshow=false;
+      this.usertxt="您好！"+user;
+    }
   }
 };
 </script>   

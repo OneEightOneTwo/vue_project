@@ -56,14 +56,26 @@
             login(){
                 let user=this.$refs.tel.value;
                 let psw=this.$refs.psw.value;
+
                 if(user&&psw){
-                    if(user==123&&psw==123){
-                        localStorage.setItem('user',JSON.stringify(user));
-                        console.log(this);
-                        this.$router.push("/mine");
-                    }else{
-                        this.alert("信息不正确");
-                    }
+                    //假数据
+                    // if(user==123&&psw==123){
+                    //     localStorage.setItem('user',JSON.stringify(user));
+                    //     // console.log(this);
+                    //     this.$router.push("/mine");
+                    // }else{
+                    //     this.alert("信息不正确");
+                    // }
+                    this.$axios({
+                        method:'post',
+                        url:'http://118.89.21.169/user/api/login_handle',
+                        data:{
+                            phone:user,
+                            password:psw
+                        }
+                    }).then(res=>{
+                        console.log(res);
+                    });
                 }else{
                     // alert("密码不能为空");
                     // console.log(user,psw);

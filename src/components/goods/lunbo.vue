@@ -13,9 +13,9 @@
     </div>
 <div class="lunbo">
   <van-swipe @change="onChange" >
-  <van-swipe-item><img src="../../assets/1-1.jpg" alt="" class="img"></van-swipe-item>
-  <van-swipe-item><img src="../../assets/1-2.jpg" alt="" class="img"></van-swipe-item>
-  <van-swipe-item><img src="../../assets/1-3.jpg" alt="" class="img"></van-swipe-item>
+  <van-swipe-item><img :src="pic[0]" alt="" class="img"></van-swipe-item>
+  <van-swipe-item><img :src="pic[1]" alt="" class="img"></van-swipe-item>
+  <van-swipe-item><img :src="pic[2]" alt="" class="img"></van-swipe-item>
 </van-swipe>
 <img @click="fanhui" src="../../assets/image/return.png" alt="" class="return" >
 </div>
@@ -29,9 +29,10 @@ export default {
       bool:true
     }
   },
+  props:['pic'],
   methods: {
     onChange(index) {
-      Toast('当前 Swipe 索引：' + index);
+      // Toast('当前 Swipe 索引：' + index);
     },
     //点击x关闭头部广告
     hide(){
@@ -40,6 +41,9 @@ export default {
     fanhui(){
       this.$router.push('/list')
     }
+  },
+  created(){
+    // console.log(this.goodList);
   }
 }
 </script>

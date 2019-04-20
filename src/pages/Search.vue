@@ -54,7 +54,7 @@ export default {
   // 挂载后
   mounted() {
     this.$refs.searchInput.focus();
-    // console.log(this)
+    // console.log(this.$refs.searchInput);
   }
 };
 </script>
