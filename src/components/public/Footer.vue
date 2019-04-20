@@ -1,6 +1,6 @@
 <template>
     <div id="footer">
-        <div class="weui-tabbar">
+        <div class="weui-tabbar" style=" background:#fff">
                 <!-- <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
                     <span style="display: inline-block;position: relative;">
                         <img :src="src" alt="" class="weui-tabbar__icon">

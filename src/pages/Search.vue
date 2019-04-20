@@ -53,8 +53,11 @@ export default {
   },
   // 挂载后
   mounted() {
-    this.$refs.searchInput.focus();
+
     // console.log(this.$refs.searchInput);
+
+    // 找到这个VantUI搜索框里的input框 ，聚焦
+    this.$refs.searchInput.children[0].children[0].children[1].children[0].children[0].focus();
   }
 };
 </script>
@@ -66,7 +69,7 @@ export default {
   left: 0;
   z-index: 99;
   height: 53px;
-  background: #f5f5f5;
+  background: #fff;
 }
 .Hot {
   padding: 5px 10px;
