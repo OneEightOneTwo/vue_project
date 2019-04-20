@@ -1,19 +1,17 @@
 <template>
-    <div class="title">
+   <div>
+      <div class="title" v-for="i in content" :key="i.id">
     <div class="title-in">
       <div class="img-box">
         <span class="txt live">生活家</span>
-        <span class="num">
-          10024
-        </span>
+        <span class="num" v-text="i.num"></span>
         <img
           class="lazy"
-          src="../../assets/image/eat4.jpg"
-          alt="手剥石榴终极大法"
+          :src="i.image"
           style="display: block;"
         >
       </div>
-      <p class="tit1">&gt;手剥石榴终极大法</p>
+      <p class="tit1">&gt;{{i.title}}</p>
       <p class="tit2"></p>
       <div class="time">
         <img
@@ -23,12 +21,30 @@
           style="display: block;"
         >
         <span class="name">&nbsp;</span>
-        <span class="time-new">2018年09月14日</span>
+        <span class="time-new" v-text="i.date"></span>
       </div>
     </div>
 </div>
-  
+   </div>
 </template>
+<script>
+export default {
+  data(){
+    return{
+      content:[]
+    }
+  },
+  created(){
+    this.$axios.get('https://www.fastmock.site/mock/1c400c949bd89011b22378dfe07950b3/list/eat',{
+
+    }).then(res=>{
+      // console.log(res);
+      this.content = res.data;
+      // console.log(this.content)
+    })
+  }
+}
+</script>
 <style scoped>
 .title {
   margin-top: 10px;
@@ -54,7 +70,7 @@
   position: relative;
 }
 .title-in .img-box .live {
-  width: 45px;
+  width: 60px;
   height: 20px;
   line-height: 20px;
   background: #ff6b22;
