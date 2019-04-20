@@ -55,7 +55,6 @@ export default {
   mounted() {
 
     // console.log(this.$refs.searchInput);
-
     // 找到这个VantUI搜索框里的input框 ，聚焦
     this.$refs.searchInput.children[0].children[0].children[1].children[0].children[0].focus();
   }
