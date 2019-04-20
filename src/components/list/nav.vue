@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div class="header"></div>
     <van-tabs @click="onClick" color="#11b57c">
       <van-tab title="销量">
         <div class="productContent" v-for="(i,index) in dataList" :key="index" @click="gotoDetails(i.id)" >
@@ -124,6 +125,10 @@ export default {
 };
 </script>
 <style scoped>
+.header{
+  height: 46px;
+  width:100%;
+}
 .productContent {
   width: 100%;
   height: 140px;
@@ -138,9 +143,9 @@ export default {
 }
 .return {
   position: fixed;
-  top: 10px;
+  top: 60px;
   left: 2%;
-  z-index: 99;
+  z-index: 999;
 }
 .cart {
   position: fixed;

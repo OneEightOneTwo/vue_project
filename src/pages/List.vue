@@ -1,14 +1,16 @@
 <template >
     <div class="list">
+        <Header></Header>
         <Nav></Nav>
     </div>
 </template>
 <script>
-// import Nav from "../components/list/nav";
+import Header from "../components/public/Header.vue";
 import Nav from "../components/list/nav";
 
 export default {
     components:{
+        Header,
         Nav,
     }
 }
