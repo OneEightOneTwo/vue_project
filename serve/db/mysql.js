@@ -5,7 +5,7 @@ var pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'yiguo'
+    database: 'vueshop'
 });
 
 let db = (sql, params, callback) => {
