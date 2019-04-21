@@ -1,18 +1,25 @@
 <template>
   <div class="productInfor">
-    <p class="title">原膳澳洲精选S级牛腩块500g</p>
+    <p class="title" v-text="goodList.name">
+        <!-- 原膳澳洲精选S级牛腩块500g -->
+    </p>
     <p class="subhead">
-      <span>天然牧草草饲 肥瘦比约3:7</span>
+      <span v-text="goodList.explain">
+        <!-- 天然牧草草饲 肥瘦比约3:7 -->
+      </span>
     </p>
     <div class="price">
       <p class="priceIn">
         <span class="priceRed">
-          <i>¥</i>42.9
+          <i>¥</i>
+          <span v-text="goodList.price"></span>
         </span>
       </p>
       <p class="area">
         产地：
-        <span class="name">澳大利亚</span>
+        <span class="name" v-text="goodList.city">
+            <!-- 澳大利亚 -->
+        </span>
       </p>
     </div>
     <div class="sevenDay line-top backGauge">
@@ -20,6 +27,16 @@
     </div>
   </div>
 </template>
+<script type="text/javascript">
+     export default{
+        data(){
+            return {
+                // goodList:'',
+            }
+        },
+        props:['goodList'],
+     }
+</script>
 <style scoped>
 .productInfor {
     padding:10px 2% 0 3.5% ;

@@ -15,7 +15,13 @@ import'../src/base/base.css'
 //使用ui框架
 // Vue.use(iView);
 
+import axios from 'axios';
+Vue.prototype.$axios=axios;
+
+import store from './store/index.js'
+
 new Vue({
   render: h => h(App),
   router: router,
+  store
 }).$mount('#app')

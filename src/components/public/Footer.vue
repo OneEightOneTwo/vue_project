@@ -34,7 +34,7 @@
                     <span style="display: inline-block;position: relative;">
                         <van-icon class="icon" name="close" />
                         <img :src="i.src" alt="" class="weui-tabbar__icon">
-                        <span v-show="i.isShouNum" class="weui-badge" style="position: absolute;top: -2px;right: -13px;">8</span>
+                        <span v-show="i.isShouNum" class="weui-badge" style="position: absolute;top: -2px;right: -13px;">3</span>
                     </span>
                     <p class="weui-tabbar__label" v-text="i.name"></p>
                 </a>
@@ -61,7 +61,8 @@
                     },{
                         name:'购物车',
                         src:require('../../assets/cart.png'),
-                        path:'/cart'
+                        path:'/cart',
+                        isShouNum:true
                     },{
                         name:'我的易果',
                         src:require('../../assets/my.png'),

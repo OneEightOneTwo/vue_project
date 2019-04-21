@@ -8,7 +8,7 @@
             <span>编辑</span>
         </header>
         <div class="main" >
-            <div class="one" v-for="(i,index) in cartLists" :key="index">
+            <div class="one"  v-for="(i,index) in cartLists" :key="i.id" :name="i.id">
                 <div class="check">
                     <input type="checkbox" />
                 </div>
@@ -24,7 +24,7 @@
                     <van-icon class="icon" name="delete" />
                 </div>
                 <div class="num">
-                    <van-stepper v-model="value" />
+                    <van-stepper v-model="i.num" />
                 </div>
             </div>
         </div> 
@@ -46,50 +46,51 @@
                 price:3050,
                 value: 1,
                 cartLists:[{
+                    id:1,
                     url:require('../assets/cartlist.jpg'),
                     name:'老杜崇明草鸭900g',
                     prices:58.00,
+                    num:1,
                 },{
+                    id:2,
                     url:require('../assets/cartlist2.jpg'),
                     name:'老杜崇明草鸭900g',
                     prices:38.00,
+                    num:2,
+
                 },{
+                    id:3,
                     url:require('../assets/cartlist3.jpg'),
                     name:'海南薄皮脆甜西州蜜瓜1个约1.4kg/个',
                     prices:18.00,
+                    num:1,
+
                 },{
+                    id:4,
                     url:require('../assets/cartlist.jpg'),
                     name:'海南薄皮脆甜西州蜜瓜1个约1.4kg/个',
                     prices:18.00,
+                    num:3,
+
                 },{
+                    id:5,
                     url:require('../assets/cartlist2.jpg'),
                     name:'海南薄皮脆甜西州蜜瓜1个约1.4kg/个',
                     prices:18.00,
+                    num:1,
+
                 },{
+                    id:6,
                     url:require('../assets/cartlist3.jpg'),
                     name:'海南薄皮脆甜西州蜜瓜1个约1.4kg/个',
                     prices:18.00,
-                },{
-                    url:require('../assets/cartlist.jpg'),
-                    name:'海南薄皮脆甜西州蜜瓜1个约1.4kg/个',
-                    prices:18.00,
-                },{
-                    url:require('../assets/cartlist2.jpg'),
-                    name:'海南薄皮脆甜西州蜜瓜1个约1.4kg/个',
-                    prices:18.00,
-                },{
-                    url:require('../assets/cartlist3.jpg'),
-                    name:'海南薄皮脆甜西州蜜瓜1个约1.4kg/个',
-                    prices:18.00,
-                },{
-                    url:require('../assets/cartlist.jpg'),
-                    name:'海南薄皮脆甜西州蜜瓜1个约1.4kg/个',
-                    prices:18.00,
-                }]
+                    num:5,
+
+                },]
             }
         },
         methods:{
-
+            
         }
      }
 </script>

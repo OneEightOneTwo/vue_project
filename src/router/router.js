@@ -21,12 +21,12 @@ import Mine from '../pages/Mine.vue';
 import Login from '../pages/Login.vue';
 //引入注册组件
 import Reg from '../pages/Reg.vue';
+//引入详情组件
 import Goods from '../pages/Goods.vue';
 import List from '../pages/List.vue';
 //引入搜索组件
 import Search from '../pages/Search.vue';
 //引入嵌套组件
-
 
 //实例化路由
 var router = new VueRouter({
@@ -70,7 +70,8 @@ var router = new VueRouter({
     },{
         name:'cart',
         path:'/cart',
-        component:Cart
+        component:Cart,
+        meta: { requiresAuth: true }
     },{
         name:'mine',
         path:'/mine',
@@ -85,6 +86,27 @@ var router = new VueRouter({
         component:Reg
     }]
 });
+
+// 全局路由守卫
+// 路由拦截：
+router.beforeEach((to,from,next)=>{
+    // console.log(to,from,next);
+    if(to.meta.requiresAuth){
+        // 需要登录的模块(购物车组件)，判断是否已登录
+        let username=JSON.parse(localStorage.getItem('user'));
+        if(username){
+            next();
+        }else{
+            //重定向到登录页面
+            next({path:'/login'});
+        }
+    }else{
+        next();
+    }
+})
+
+
+
 
 // 暴露路由对象，为后续挂载容器做准备
 export default router;
