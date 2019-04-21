@@ -154,8 +154,8 @@ import Header from "../components/public/Header.vue";
 import Loading from "../components/public/Loading.vue";
 // 封装axios引入
 import request from "../request/request.js";
-// import { constants } from "fs";
-// import { setTimeout, clearTimeout } from "timers";
+import { constants } from "fs";
+import { setTimeout, clearTimeout } from "timers";
 
 export default {
   data() {
@@ -396,7 +396,6 @@ body {
 }
 .pic img {
   width: 100%;
-  height: 200px;
 }
 .info {
   padding: 0px 5px 0 5px;
