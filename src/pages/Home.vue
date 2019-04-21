@@ -167,7 +167,11 @@
 import Header from "../components/public/Header.vue";
 // 加载中
 import Loading from "../components/public/Loading.vue";
-import { setTimeout, clearTimeout } from "timers";
+// 封装axios引入
+import request from "../request/request.js";
+// import { constants } from "fs";
+// import { setTimeout, clearTimeout } from "timers";
+
 export default {
   data() {
     return {
@@ -255,13 +259,21 @@ export default {
       //变量scrollHeight是滚动条的总高度
       scrollHeight: 0,
       showLoader: false,
-      show: false
+      show: false,
+      // 轮播图
+      lunbo: []
     };
   },
   // 头部搜索组件
   components: {
     Header,
     Loading
+  },
+  // ajax请求
+  async created() {
+    let {data} = await request.post('http://118.89.21.169/user/api/getwheel',{
+    });
+    console.log(data)
   },
   methods: {
     // 点击缓慢回到顶部
@@ -275,7 +287,7 @@ export default {
         }
       }, 30);
     },
-    // 跳到详情页
+    // 跳到列表页
     goToDetails() {
       this.$router.push({ name: "list" });
     }
@@ -298,7 +310,6 @@ export default {
         this.showLoader = true;
         this.show = true;
         this.showLoader = false;
-      } else {
       }
       if (this.scroll >= this.scrollTo) {
         this.bool = true;
