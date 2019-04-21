@@ -162,6 +162,7 @@ export default {
     return {
       // 控制回到顶部
       bool: false,
+      length: 0,
       list: [
         {
           txt: "新鲜水果",
@@ -301,6 +302,9 @@ export default {
         this.bool = false;
       }
     };
+  },
+  watch: {
+    scroll() {}
   }
 };
 </script>
@@ -392,6 +396,7 @@ body {
 }
 .pic img {
   width: 100%;
+  height: 200px;
 }
 .info {
   padding: 0px 5px 0 5px;
