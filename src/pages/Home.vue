@@ -8,15 +8,15 @@
       :autoplay="3000"
       indicator-color="white"
     >
-      <van-swipe-item>
-        <img class="autoImg" src="../assets/9288737764615820_1125x652.jpg" alt>
+      <van-swipe-item v-for="(item,index) in lunbo" :key="index">
+        <img class="autoImg" :src="item.img" alt>
       </van-swipe-item>
-      <van-swipe-item>
+      <!-- <van-swipe-item>
         <img class="autoImg" src="../assets/9288737621255798_1125x652.jpg" alt>
       </van-swipe-item>
       <van-swipe-item>
         <img class="autoImg" src="../assets/9288737472652897_1125x652.jpg" alt>
-      </van-swipe-item>
+      </van-swipe-item> -->
     </van-swipe>
     <!-- 广告 -->
     <div class="first-screen-ad">
@@ -128,21 +128,6 @@
             </div>
           </div>
         </li>
-        <!-- <li>
-          <div class="pic">
-            <a href="javascript:;">
-              <img src="../assets/170508094922561_104154_300.jpg" alt>
-            </a>
-          </div>
-          <div class="info">
-            <p class="name">马家沟芹菜2kg</p>
-            <span class="saletip">单品包邮</span>
-            <div class="price">
-              <strong>￥39.9</strong>
-              /2kg
-            </div>
-          </div>
-        </li>-->
       </ul>
     </div>
     <!-- 懒加载/类型 -->
@@ -259,7 +244,7 @@ export default {
       scrollHeight: 0,
       showLoader: false,
       show: false,
-      // 轮播图
+      // 轮播图初始化
       lunbo: []
     };
   },
@@ -268,11 +253,11 @@ export default {
     Header,
     Loading
   },
-  // ajax请求
+  // ajax请求渲染轮播图
   async created() {
-    let {data} = await request.post('http://118.89.21.169/user/api/getwheel',{
+    let {data} = await request.post('http://localhost:2333/',{
     });
-    console.log(data)
+    this.lunbo = JSON.parse(data).data
   },
   methods: {
     // 点击缓慢回到顶部

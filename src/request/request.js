@@ -14,7 +14,7 @@ export default {
     //url:后端请求的链接
     //params：传给后端的参数
     get(url, params) {
-        state.isToast += 1;
+        state.isLoding += 1;
         return new Promise((resovle, reject) => {
             axios.get(url, qs.stringify({
                 params: {
@@ -22,7 +22,7 @@ export default {
                 }
             }))
                 .then(function (response) {
-                    state.isToast -= 1;
+                    state.isLoding -= 1;
                     resovle(response);
                 })
                 .catch(function (error) {
@@ -31,7 +31,7 @@ export default {
         })
     },
     post(url, params) {
-        state.isToast += 1;
+        state.isLoding += 1;
         return new Promise((resovle, reject) => {
             axios.post(url, qs.stringify({
                 params: {
@@ -39,7 +39,7 @@ export default {
                 }
             }))
                 .then(function (response) {
-                    state.isToast -= 1;
+                    state.isLoding -= 1;
                     resovle(response);
                 })
                 .catch(function (error) {
