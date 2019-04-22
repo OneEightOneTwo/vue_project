@@ -5,7 +5,7 @@
         规格
         <span class="choose active">500g/包</span>
       </div>
-      <div class="title line-bottom">
+      <div class="title line-bottom" @click="addnum">
         <div class="number">数量</div>
         <van-stepper v-model="value" />
       </div>
@@ -16,8 +16,19 @@
 export default {
   data() {
     return {
-      value: 1
+      value: 1,
     }
+  },
+  methods:{
+    //数量改变时（用了ui框架，不管是增加数量还是减少数量都调用此方法）
+    addnum(){
+         // console.log(this.value);
+         this.$emit ('increase', this.value);
+    },
+    //减少数量时
+    lessnum(){
+
+    },
   }
 }
 </script>

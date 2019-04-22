@@ -13,6 +13,7 @@
   <van-goods-action-big-btn
     text="加入购物车"
     @click="onClickBigBtn"
+    v-if="goodList"
   />
   <van-goods-action-big-btn
     primary
@@ -23,12 +24,29 @@
 </template>
 <script>
 export default {
+  props:['goodList','pic','num'],
+  data(){
+    return {
+      tel:'',
+    }
+  },
   methods:{
     onClickBigBtn(){
+      // console.log(this);
+      var data={_id:this.goodList.id,goods:this.goodList.name,num:this.num,price:this.goodList.price,image:this.pic[0],tel:this.tel}
+      // console.log(data);
+      this.$store.dispatch('addcartgoods',data);
+      
     },
+    //跳转到购物车页面
     onClickMiniBtn(){
+      this.$router.push({path:'/cart'});
+    },
 
-    }
+  },
+  created(){
+    var user=JSON.parse(localStorage.getItem('user'));
+    this.tel=user;
   }
 }
 </script>

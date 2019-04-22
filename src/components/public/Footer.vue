@@ -34,7 +34,9 @@
                     <span style="display: inline-block;position: relative;">
                         <van-icon class="icon" name="close" />
                         <img :src="i.src" alt="" class="weui-tabbar__icon">
-                        <span v-show="i.isShouNum" class="weui-badge" style="position: absolute;top: -2px;right: -13px;">3</span>
+                        <span v-show="i.isShouNum" class="weui-badge" style="position: absolute;top: -2px;right: -13px;"
+                        v-text="cartlist.length"></span>
+                        
                     </span>
                     <p class="weui-tabbar__label" v-text="i.name"></p>
                 </a>
@@ -42,6 +44,7 @@
     </div>
 </template>
 <script type="text/javascript">
+import {mapState}  from 'vuex'
      export default{
         data(){
             return{
@@ -70,13 +73,33 @@
                     }
                 ],
                 activeId: 0,
+                cartLists:'',
             }
+        },
+        // 映射 将vuex里的state里的值映射过来
+        computed:{
+            ...mapState([ 
+                'cartlist'
+            ])
         },
         methods:{
             changeActiveId(index,path){
                 this.activeId=index;
                 this.$router.push(path);
-            }
+            },
+        },
+        async mounted(){
+            //null是传的值
+            await this.$store.dispatch('getcartData',null);
+            // console.log(this.cartlist);
+            //为什么拿不到值，有待解决
+            // console.log(this);
+            await console.log(this.$store.state.cartlist);
+            console.log(this)
+            console.log(11)
+            console.log(this.cartlist);
+            // console.log(this.$store.state.cartlist);
+
         }
      }
 </script>
