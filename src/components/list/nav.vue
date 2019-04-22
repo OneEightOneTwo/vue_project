@@ -106,7 +106,6 @@ export default {
     addCart(id){
       // console.log(11);
       var user=JSON.parse(localStorage.getItem('user'));
-      // console.log(this.dataList)
       // console.log(id);
       var data;
       this.dataList.map(function(item){
@@ -114,8 +113,7 @@ export default {
           data=item;
         }
       });
-      // console.log(data);
-      
+      // console.log(data); 
     }
   },
   created(){

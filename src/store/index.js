@@ -34,7 +34,9 @@ const store=new Store({
         delgoods(state,payload){
 
         },
-
+        setCartCount: (state, data) => {
+            state.cartCount = data
+        }
     },
     //异步操作
     actions:{

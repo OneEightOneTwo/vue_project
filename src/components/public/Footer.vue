@@ -41,6 +41,7 @@
                     <p class="weui-tabbar__label" v-text="i.name"></p>
                 </a>
             </div>
+            <!-- <div>{{cartlistLenght}}</div> -->
     </div>
 </template>
 <script type="text/javascript">
@@ -73,33 +74,68 @@ import {mapState}  from 'vuex'
                     }
                 ],
                 activeId: 0,
-                cartLists:'',
+                store:'',
+                // total:0
             }
         },
         // 映射 将vuex里的state里的值映射过来
         computed:{
             ...mapState([ 
-                'cartlist'
-            ])
+                'cartlist',
+            ]),
+            //计算属性
+            cartlistLenght(){
+                var total=0;
+                // return console.log(this.$store.state.cartlist);
+                // return this.$store.state.cartlist.length;
+                this.cartlist.map(function(item){
+                    total+=(item.num)*1;
+                })
+                return total;
+            }
         },
         methods:{
             changeActiveId(index,path){
                 this.activeId=index;
                 this.$router.push(path);
             },
+            //获取购物车数量
+            getCartCount(){
+                this.$store.dispatch('getcartData').then(res => {
+                let count = res.data.length;
+                //更新 state数据
+                this.$store.commit("setCartCount", count)
+                }).catch(err => {
+                    console.log(err);
+                })
+            }
         },
-        async mounted(){
+        created(){
+            this.getCartCount();
             //null是传的值
-            await this.$store.dispatch('getcartData',null);
+            // this.$store.dispatch('getcartData').then(res => {
+
+            //     let count = res.data.length;
+            //     // let count=0;
+            //     // res.data.map(function(item){
+            //     //     return count+=(item.num)*1;
+            //     // })
+            //     console.log(count)
+            //     //更新 state数据
+            //     this.$store.commit("setCartCount", count)
+            //     }).catch(err => {
+            //         console.log(err);
+            //     })
             // console.log(this.cartlist);
             //为什么拿不到值，有待解决
             // console.log(this);
-            await console.log(this.$store.state.cartlist);
-            console.log(this)
-            console.log(11)
-            console.log(this.cartlist);
             // console.log(this.$store.state.cartlist);
-
+        },
+        //监听属性的变化
+        watch:{
+            cartlistLenght() {
+               
+            }
         }
      }
 </script>
