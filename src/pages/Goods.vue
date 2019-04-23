@@ -3,8 +3,8 @@
         <Luobo :pic="pic"></Luobo>
         <Connect :goodList="goodList"></Connect>
         <Sell></Sell>
-        <Num></Num>
-        <GoodsAction></GoodsAction>
+        <Num v-on:increase="shownun"></Num>
+        <GoodsAction :goodList="goodList" :pic="pic" :num="num"></GoodsAction>
     </div>
 </template>
 <script>
@@ -19,6 +19,7 @@ export default {
         return {
             goodList:'',
             pic:'',
+            num:1,
         }
     },
     components:{
@@ -27,6 +28,13 @@ export default {
         Sell,
         Num,
         GoodsAction,
+    },
+    methods:{
+      shownun(data){
+        this.num=data;
+        console.log(this.num);
+        // console.log(11);
+      }
     },
     created(){
         let goodId=this.$route.query.id;

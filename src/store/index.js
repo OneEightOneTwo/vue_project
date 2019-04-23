@@ -18,11 +18,60 @@ Vue.use(Vuex);
 
 const store=new Store({
     state,
+    //同步操作
     mutations:{
+        //查询对应的用户的购物车列表
+        changeCartlist(state,payload){
+            // state.cartlist = [];//儿子错误
+            state.cartlist=[];//每次push之前先把原来的清空，否则会在原来的基础上加了数据
+            payload.map(function(item){
+                state.cartlist.push(item);
+            })
+        },
+        addgoods(state,payload){
 
+        },
+        delgoods(state,payload){
+
+        },
     },
+    //异步操作
     actions:{
-
+        getcartData(context){
+            var user=JSON.parse(localStorage.getItem('user'));
+            // console.log(context)
+             // console.log(user);
+             // 查询对应的用户的购物车列表的异步请求
+            this._vm.$axios({
+                method:'get',
+                url:'http://localhost:3000/cart/queryAll',
+                params:{
+                    tel:user
+                }
+            }).then(res=>{
+                var data=res.data;
+                // console.log(data);
+                context.commit('changeCartlist',data);
+            });
+        },
+        addcartgoods(context,payload){
+            this._vm.$axios({
+                method:'get',
+                url:'http://localhost:3000/cart/addgoods',
+                params:payload,
+            }).then(res=>{
+                context.commit('addgoods',res);
+            });
+        },
+        delcart(context,payload){
+            this._vm.$axios({
+                method:'get',
+                url:'http://localhost:3000/cart/delOne',
+                params:payload,
+            }).then(res=>{
+                context.commit('delgoods',res);
+            });
+        }
     },
 });
 

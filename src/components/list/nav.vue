@@ -26,7 +26,7 @@
               <span class="standard" v-text="i.details">
                 <!-- 200g/盒 -->
               </span>
-              <van-icon name="add-o" @click.stop="addCart()" color="#11b57c" class="add"/>
+              <van-icon name="add-o" @click.stop="addCart(i.id)" color="#11b57c" class="add"/>
             </p>
           </div>
         </div>
@@ -116,8 +116,17 @@ export default {
       this.$router.push({ path: "/goods", query: { id } });
     },
     //加入购物车
-    addCart() {
-      console.log(11);
+    addCart(id){
+      // console.log(11);
+      var user=JSON.parse(localStorage.getItem('user'));
+      // console.log(id);
+      var data;
+      this.dataList.map(function(item){
+        if(item.id==id){
+          data=item;
+        }
+      });
+      // console.log(data); 
     }
   },
   async created() {

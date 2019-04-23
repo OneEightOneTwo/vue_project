@@ -40,6 +40,7 @@
     
 </template>
 <script type="text/javascript">
+    import axios from '../request/request.js'; 
      export default{
         data(){
             return{
@@ -66,14 +67,18 @@
                     }else{
                         this.alert("信息不正确");
                     }
+                    // console.log(params);
+                    // var res=axios.post('http://118.89.21.169/user/api/login_handle',params);
+                    // console.log(res);
                     // this.$axios({
-                    //     method:'post',
+                    //     method:"post",
                     //     url:'http://118.89.21.169/user/api/login_handle',
-                    //     data:{
+                    //     params:{
                     //         phone:user,
                     //         password:psw
                     //     }
                     // }).then(res=>{
+                    //     // var {data}=res;
                     //     console.log(res);
                     // });
                 }else{
