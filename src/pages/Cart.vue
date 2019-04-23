@@ -8,7 +8,7 @@
             <span>编辑</span>
         </header>
         <div class="main" >
-            <div class="one"  v-for="(i,idx) in this.$store.state.cartlist" :key="i._id" :name="i._id">
+            <div class="one"  v-for="(i) in this.$store.state.cartlist" :key="i._id" :name="i._id">
                 <div class="check">
                     <input type="checkbox" />
                 </div>
