@@ -8,10 +8,10 @@
       :autoplay="3000"
       indicator-color="white"
     >
-      <!-- <van-swipe-item v-for="(item,index) in lunbo" :key="index">
+      <van-swipe-item v-for="(item,index) in lunbo" :key="index">
         <img class="autoImg" :src="item.img" alt>
-      </van-swipe-item> -->
-       <van-swipe-item>
+      </van-swipe-item>
+       <!-- <van-swipe-item>
         <img class="autoImg" src="../assets/9288737764615820_1125x652.jpg" alt>
       </van-swipe-item>
       <van-swipe-item>
@@ -19,7 +19,7 @@
       </van-swipe-item>
       <van-swipe-item>
         <img class="autoImg" src="../assets/9288737472652897_1125x652.jpg" alt>
-      </van-swipe-item>
+      </van-swipe-item> -->
     </van-swipe>
     <!-- 广告 -->
     <div class="first-screen-ad">
@@ -157,8 +157,6 @@ import Header from "../components/public/Header.vue";
 import Loading from "../components/public/Loading.vue";
 // 封装axios引入
 import request from "../request/request.js";
-import { constants } from "fs";
-import { setTimeout, clearTimeout } from "timers";
 
 export default {
   data() {
@@ -259,9 +257,10 @@ export default {
   },
   // ajax请求渲染轮播图
   async created() {
-    // let {data} = await request.post('http://localhost:2333/',{
-    // });
-    // this.lunbo = JSON.parse(data).data
+    let {data} = await request.post('http://118.89.21.169/user/api/getwheel',{
+    });
+    this.lunbo = data.data
+    // console.log(data.data)
   },
   methods: {
     // 点击缓慢回到顶部
