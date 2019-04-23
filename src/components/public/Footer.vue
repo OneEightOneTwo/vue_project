@@ -92,6 +92,10 @@ import {mapState}  from 'vuex'
                     total+=(item.num)*1;
                 })
                 return total;
+            },
+            //计算属性是和watch(非常重要非常重要)
+            goodalls() {
+                return this.$store.state.cartlist;
             }
         },
         methods:{
@@ -99,42 +103,15 @@ import {mapState}  from 'vuex'
                 this.activeId=index;
                 this.$router.push(path);
             },
-            //获取购物车数量
-            getCartCount(){
-                this.$store.dispatch('getcartData').then(res => {
-                let count = res.data.length;
-                //更新 state数据
-                this.$store.commit("setCartCount", count)
-                }).catch(err => {
-                    console.log(err);
-                })
-            }
         },
         created(){
-            this.getCartCount();
-            //null是传的值
-            // this.$store.dispatch('getcartData').then(res => {
-
-            //     let count = res.data.length;
-            //     // let count=0;
-            //     // res.data.map(function(item){
-            //     //     return count+=(item.num)*1;
-            //     // })
-            //     console.log(count)
-            //     //更新 state数据
-            //     this.$store.commit("setCartCount", count)
-            //     }).catch(err => {
-            //         console.log(err);
-            //     })
-            // console.log(this.cartlist);
-            //为什么拿不到值，有待解决
-            // console.log(this);
-            // console.log(this.$store.state.cartlist);
+            // this.getCartCount();
+            this.$store.dispatch('getcartData',null);
         },
-        //监听属性的变化
+        //监听属性的变化(非常重要非常重要)
         watch:{
-            cartlistLenght() {
-               
+            goodalls(){
+                this.$store.dispatch('getcartData',null);
             }
         }
      }

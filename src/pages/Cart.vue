@@ -56,38 +56,21 @@
                 //     name:'老杜崇明草鸭900g',
                 //     prices:38.00,
                 //     num:2,
-
                 // },{
                 //     id:3,
                 //     url:require('../assets/cartlist3.jpg'),
                 //     name:'海南薄皮脆甜西州蜜瓜1个约1.4kg/个',
                 //     prices:18.00,
                 //     num:1,
-
-                // },{
-                //     id:4,
-                //     url:require('../assets/cartlist.jpg'),
-                //     name:'海南薄皮脆甜西州蜜瓜1个约1.4kg/个',
-                //     prices:18.00,
-                //     num:3,
-
-                // },{
-                //     id:5,
-                //     url:require('../assets/cartlist2.jpg'),
-                //     name:'海南薄皮脆甜西州蜜瓜1个约1.4kg/个',
-                //     prices:18.00,
-                //     num:1,
-
-                // },{
-                //     id:6,
-                //     url:require('../assets/cartlist3.jpg'),
-                //     name:'海南薄皮脆甜西州蜜瓜1个约1.4kg/个',
-                //     prices:18.00,
-                //     num:5,
-
-                // },]
+                // }]
             }
         },
+        // computed:{
+        //     //计算属性是和watch(非常重要非常重要)
+        //     goodalls() {
+        //         return this.$store.state.cartlist;
+        //     }
+        // },
         methods:{
             delgoods(id){
                 var user=JSON.parse(localStorage.getItem('user'));
@@ -103,7 +86,13 @@
             //null是传的值
             this.$store.dispatch('getcartData',null);
             console.log(this.$store.state.cartlist);
-        }
+        },
+        //监听属性的变化(非常重要非常重要)
+        // watch:{
+        //     goodalls(){
+        //         this.$store.dispatch('getcartData',null);
+        //     }
+        // }
      }
 </script>
 <style lang="css" scoped>
