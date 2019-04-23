@@ -3,7 +3,12 @@
     <div class="header"></div>
     <van-tabs @click="onClick" color="#11b57c">
       <van-tab title="销量">
-        <div class="productContent" v-for="(i,index) in dataList" :key="index" @click="gotoDetails(i.id)" >
+        <div
+          class="productContent"
+          v-for="(i,index) in dataList"
+          :key="index"
+          @click="gotoDetails(i.id)"
+        >
           <div class="img">
             <img :src="i.pic">
           </div>
@@ -19,13 +24,13 @@
                 <!-- ¥189 -->
               </span>
               <span class="standard" v-text="i.details">
-               <!-- 200g/盒 -->
+                <!-- 200g/盒 -->
               </span>
               <van-icon name="add-o" @click.stop="addCart()" color="#11b57c" class="add"/>
             </p>
           </div>
         </div>
-       <!--  <div class="productContent">
+        <!--  <div class="productContent">
           <div class="img">
             <img src="../../assets/1-1.jpg">
           </div>
@@ -38,20 +43,26 @@
               <van-icon name="add-o" color="#11b57c" class="add"/>
             </p>
           </div>
-        </div> -->
+        </div>-->
       </van-tab>
       <van-tab title="价格">空</van-tab>
     </van-tabs>
     <img @click="hui" src="../../assets/image/return1.png" alt class="return">
     <img @click="toTop" src="../../assets/image/top.png" alt class="go-top">
     <img @click="cart" src="../../assets/image/cart.png" alt class="cart">
+    <!-- 加载中 -->
+    <Loading/>
   </div>
 </template>
 <script>
+// 封装axios使用
+import axios from "../../request/request.js";
+// 加载中
+import Loading from "../public/Loading.vue";
 export default {
-  data(){
-    return{
-      dataList:'',
+  data() {
+    return {
+      dataList: ""
       // dataList:[{
       //   id:1,
       //   name:'澳洲塔斯马尼亚冷冻去骨后腿和牛排(MB7+)200g',
@@ -82,7 +93,11 @@ export default {
       //   img:require('../../assets/1-1.jpg')
       // }]
       // pictureList:'',
-    }
+    };
+  },
+  // 加载中组件
+  components: {
+    Loading
   },
   methods: {
     onClick(index, title) {},
@@ -94,40 +109,49 @@ export default {
     cart() {
       this.$router.push("/cart");
     },
-    toTop() {
-
-    },
+    toTop() {},
     //点击详情页面去购物车页面
-    gotoDetails(id){
+    gotoDetails(id) {
       // console.log(id);
-      this.$router.push({path:'/goods',query:{id}});
+      this.$router.push({ path: "/goods", query: { id } });
     },
     //加入购物车
-    addCart(){
+    addCart() {
       console.log(11);
     }
   },
-  created(){
-        var arr=[];
-        this.$axios({
-          method:'get',
-          url:'https://www.fastmock.site/mock/1c400c949bd89011b22378dfe07950b3/list/api',
-        }).then(res=>{
-          // console.log(res);
-          res.data.map(function(item,idx){
-            var arr2=item.picture.split("&");
-            res.data[idx].pic=arr2[0];
-          })
-            this.dataList=res.data;
-            // console.log(this.dataList);
-        })
-    },
+  async created() {
+    var arr = [];
+    // this.$axios({
+    //   method: "get",
+    //   url:
+    //     "https://www.fastmock.site/mock/1c400c949bd89011b22378dfe07950b3/list/api"
+    // }).then(res => {
+    //   // console.log(res);
+    //   res.data.map(function(item, idx) {
+    //     var arr2 = item.picture.split("&");
+    //     res.data[idx].pic = arr2[0];
+    //   });
+    //   this.dataList = res.data;
+    //   // console.log(this.dataList);
+    // });
+    let { data } = await axios.get(
+      "https://www.fastmock.site/mock/1c400c949bd89011b22378dfe07950b3/list/api",
+      {}
+    );
+    // console.log(data)
+    data.map(function(item, idx) {
+      var arr2 = item.picture.split("&");
+      data[idx].pic = arr2[0];
+    });
+    this.dataList = data;
+  }
 };
 </script>
 <style scoped>
-.header{
+.header {
   height: 46px;
-  width:100%;
+  width: 100%;
 }
 .productContent {
   width: 100%;

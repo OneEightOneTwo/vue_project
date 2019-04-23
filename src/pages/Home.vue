@@ -154,8 +154,6 @@ import Header from "../components/public/Header.vue";
 import Loading from "../components/public/Loading.vue";
 // 封装axios引入
 import request from "../request/request.js";
-import { constants } from "fs";
-import { setTimeout, clearTimeout } from "timers";
 
 export default {
   data() {
@@ -256,9 +254,10 @@ export default {
   },
   // ajax请求渲染轮播图
   async created() {
-    let {data} = await request.post('http://localhost:2333/',{
+    let {data} = await request.post('http://118.89.21.169/user/api/getwheel',{
     });
-    this.lunbo = JSON.parse(data).data
+    this.lunbo = data.data
+    // console.log(data.data)
   },
   methods: {
     // 点击缓慢回到顶部
