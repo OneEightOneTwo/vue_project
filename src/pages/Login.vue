@@ -1,4 +1,4 @@
-<template>
+ <template>
     <div class="login">
         <header>
             <router-link to="/mine">
