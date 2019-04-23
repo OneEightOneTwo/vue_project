@@ -22,7 +22,6 @@ const store=new Store({
     mutations:{
         //查询对应的用户的购物车列表
         changeCartlist(state,payload){
-            // state.cartlist = [];//儿子错误
             state.cartlist=[];//每次push之前先把原来的清空，否则会在原来的基础上加了数据
             payload.map(function(item){
                 state.cartlist.push(item);
@@ -40,7 +39,6 @@ const store=new Store({
         getcartData(context){
             var user=JSON.parse(localStorage.getItem('user'));
             // console.log(context)
-             // console.log(user);
              // 查询对应的用户的购物车列表的异步请求
             this._vm.$axios({
                 method:'get',

@@ -74,7 +74,6 @@ import {mapState}  from 'vuex'
                 ],
                 activeId: 0,
                 store:'',
-                // total:0
             }
         },
         // 映射 将vuex里的state里的值映射过来
@@ -92,7 +91,7 @@ import {mapState}  from 'vuex'
                 })
                 return total;
             },
-            //计算属性是和watch(非常重要非常重要)
+            //计算属性是和watch(非常重要)
             goodalls() {
                 return this.$store.state.cartlist.length;
             }
@@ -104,13 +103,15 @@ import {mapState}  from 'vuex'
             },
         },
         created(){
-            // this.getCartCount();
+            //数量初始化
             this.$store.dispatch('getcartData',null);
         },
-        //监听属性的变化(非常重要非常重要)
+        //监听属性的变化(非常重要)
         watch:{
-            goodalls(){
+            //监听路由的变化(全局改变，footer是全局组件)
+            $route(){ 
                 this.$store.dispatch('getcartData',null);
+                // console.log(1);
             }
         }
      }

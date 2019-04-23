@@ -107,6 +107,5 @@ router.beforeEach((to,from,next)=>{
 
 
 
-
 // 暴露路由对象，为后续挂载容器做准备
 export default router;

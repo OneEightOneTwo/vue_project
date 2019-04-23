@@ -8,7 +8,7 @@
             <span>编辑</span>
         </header>
         <div class="main" >
-            <div class="one"  v-for="(i,idx) in this.$store.state.cartlist" :key="i._id" :name="i._id">
+            <div class="one"  v-for="i in this.$store.state.cartlist" :key="i._id" :name="i._id">
                 <div class="check">
                     <input type="checkbox" />
                 </div>
@@ -78,21 +78,19 @@
                 var data={tel:user,id:id};
                 //没有这个删除第一条数据没有反应
                 this.$store.dispatch('getcartData');
-                this.$store.dispatch('delcart',data);
+                this.$store.dispatch('delcart',data)
+                // .then(res=>{
+                //     console.log(1)
+                //     console.log(res);
+                // });
                 this.$store.dispatch('getcartData');
             }
         },
         mounted(){
             //null是传的值
             this.$store.dispatch('getcartData',null);
-            console.log(this.$store.state.cartlist);
         },
-        //监听属性的变化(非常重要非常重要)
-        // watch:{
-        //     goodalls(){
-        //         this.$store.dispatch('getcartData',null);
-        //     }
-        // }
+        
      }
 </script>
 <style lang="css" scoped>
