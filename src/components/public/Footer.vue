@@ -35,8 +35,7 @@
                         <van-icon class="icon" name="close" />
                         <img :src="i.src" alt="" class="weui-tabbar__icon">
                         <span v-show="i.isShouNum" class="weui-badge" style="position: absolute;top: -2px;right: -13px;"
-                        v-text="cartlist.length"></span>
-                        
+                        v-text="goodalls"></span>
                     </span>
                     <p class="weui-tabbar__label" v-text="i.name"></p>
                 </a>
@@ -95,7 +94,7 @@ import {mapState}  from 'vuex'
             },
             //计算属性是和watch(非常重要非常重要)
             goodalls() {
-                return this.$store.state.cartlist;
+                return this.$store.state.cartlist.length;
             }
         },
         methods:{
