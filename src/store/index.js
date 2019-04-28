@@ -27,12 +27,12 @@ const store=new Store({
                 state.cartlist.push(item);
             })
         },
-        addgoods(state,payload){
+        // addgoods(state,payload){
 
-        },
-        delgoods(state,payload){
+        // },
+        // delgoods(state,payload){
 
-        },
+        // },
     },
     //异步操作
     actions:{
@@ -58,7 +58,7 @@ const store=new Store({
                 url:'http://localhost:3000/cart/addgoods',
                 params:payload,
             }).then(res=>{
-                context.commit('addgoods',res);
+                // context.commit('addgoods',res);
             });
         },
         delcart(context,payload){
@@ -67,8 +67,17 @@ const store=new Store({
                 url:'http://localhost:3000/cart/delOne',
                 params:payload,
             }).then(res=>{
-                context.commit('delgoods',res);
+                // context.commit('delgoods',res);
             });
+        },
+        uploadcart(constext,payload){
+            this._vm.$axios({
+                method:'get',
+                url:'http://localhost:3000/cart/updata',
+                params:payload,
+            }).then(res=>{
+                console.log(res);
+            })
         }
     },
 });

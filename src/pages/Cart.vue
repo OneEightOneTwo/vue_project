@@ -8,9 +8,10 @@
             <span>编辑</span>
         </header>
         <div class="main" >
-            <div class="one"  v-for="i in this.$store.state.cartlist" :key="i._id" :name="i._id">
+            <div class="one"  v-for="(i,index) in this.$store.state.cartlist" :key="i._id" :name="i._id">
                 <div class="check">
-                    <input type="checkbox" />
+                    <input type="checkbox" v-model="selected" :value="index"/>
+                    <!-- <van-checkbox v-model="checked"></van-checkbox> -->
                 </div>
                 <div class="img">
                     <img :src="i.image" height="54" width="54" alt="" />
@@ -23,27 +24,34 @@
                     <van-icon class="icon" name="delete" @click="delgoods(i._id)"/>
                 </div>
                 <div class="num">
-                    <van-stepper v-model="i.num" />
+                    <van-stepper 
+                    v-model="i.num" 
+                    @plus="updataPlus(index)"
+                    @minus="updataMinus(index)"
+                    />
                 </div>
             </div>
         </div> 
         <footer>
             <van-submit-bar
-              :price="3050"
+              :price="price"
               button-text="提交订单"
             >
-              <van-checkbox >全选</van-checkbox>
+            <van-checkbox v-model="checked">全选</van-checkbox>
             </van-submit-bar>
         </footer>
+        <!-- {{totalPrice}} -->
     </div>
 </template>
 <script type="text/javascript">
      // import state from 'vuex';
+     import {mapState} from 'vuex';
      export default{
         data(){
             return{
-                price:3050,
-                value: 1,
+                checked: false,
+                selected:[],
+                cartlists:'',
                 // cartLists:[{
                 //     id:1,
                 //     url:require('../assets/cartlist.jpg'),
@@ -65,12 +73,23 @@
                 // }]
             }
         },
-        // computed:{
-        //     //计算属性是和watch(非常重要非常重要)
-        //     goodalls() {
-        //         return this.$store.state.cartlist;
-        //     }
-        // },
+        computed:{
+            //计算属性
+            ...mapState([
+            'cartlist' //映射computed.produccts为this.$store.state.products
+            ]),
+            //计算商品总价
+            price(){
+                var total=0;
+                this.cartlist.map((item)=>{
+                    //总价=单价*数量
+                    total+=(item.price*1)*(item.num);
+                })
+                // console.log(total)
+                //因为iu框架的price单位是分（看vant-ui框架的api文档），so就*了100
+                return total*100;
+            }
+        },
         methods:{
             delgoods(id){
                 var user=JSON.parse(localStorage.getItem('user'));
@@ -79,18 +98,49 @@
                 //没有这个删除第一条数据没有反应
                 this.$store.dispatch('getcartData');
                 this.$store.dispatch('delcart',data)
-                // .then(res=>{
-                //     console.log(1)
-                //     console.log(res);
-                // });
                 this.$store.dispatch('getcartData');
-            }
+            },
+            //封装点击加减操作时，发送axios请求
+            updata(curnum,idx){
+                var data={
+                    num:curnum,
+                    _id:this.cartlist[idx]._id,
+                    tel:JSON.parse(localStorage.getItem('user'))
+                }
+                this.$store.dispatch('uploadcart',data);
+            },
+            //点击加操作时
+            updataPlus(idx){
+                //传id拿值
+                // console.log(this.cartlist[idx]);
+                var curnum=(this.cartlist[idx].num)*1+1;
+                // console.log(this.cartlist[idx]);
+                // var data={
+                //     num:curnum,
+                //     _id:this.cartlist[idx]._id,
+                //     tel:JSON.parse(localStorage.getItem('user'))
+                // }
+                // // console.log(data);
+                // this.$store.dispatch('uploadcart',data);
+                this.updata(curnum,idx);
+            },
+            //点击减操作时
+            updataMinus(idx){
+                //传id拿值
+                var curnum=(this.cartlist[idx].num)*1-1;
+                // console.log(curnum);
+                // var data={
+                //     num:curnum,
+                //     _id:this.cartlist[idx]._id,
+                //     tel:JSON.parse(localStorage.getItem('user'))
+                // }
+                this.updata(curnum,idx);
+            },
         },
-        mounted(){
+        async mounted(){
             //null是传的值
             this.$store.dispatch('getcartData',null);
         },
-        
      }
 </script>
 <style lang="css" scoped>

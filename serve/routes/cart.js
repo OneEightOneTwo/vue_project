@@ -79,4 +79,25 @@ router.get('/delOne', function(req, res, next) {
   })
 });
 
+//更新购物车的数据
+router.get('/updata',function(req,res,next){
+  // console.log(req.query);
+  let {
+    num,
+    _id,
+    tel
+  }=req.query;
+  // UPDATE cartlist SET num='9' WHERE _id='1' and tel='123'
+  db(`UPDATE cartlist SET num='${num}' WHERE _id='${_id}' and tel='${tel}'`,null,(data)=>{
+    // console.log(data);
+    var {affectedRows}=data;
+    if(affectedRows>0){
+        res.send('success');
+    }else{
+        res.send('faile');
+    }
+
+  })
+})
+
 module.exports = router;

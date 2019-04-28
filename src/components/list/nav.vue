@@ -120,13 +120,16 @@ export default {
       // console.log(11);
       var user=JSON.parse(localStorage.getItem('user'));
       // console.log(id);
-      var data;
+      var curgoods;
       this.dataList.map(function(item){
         if(item.id==id){
-          data=item;
+          curgoods=item;
         }
       });
-      // console.log(data); 
+      // console.log(curgoods); 
+      var data={_id:curgoods.id,goods:curgoods.name,num:'1',price:curgoods.price,image:curgoods.pic,tel:JSON.parse(localStorage.getItem('user'))};
+      console.log(data);
+      this.$store.dispatch('addcartgoods',data);
     }
   },
   async created() {
